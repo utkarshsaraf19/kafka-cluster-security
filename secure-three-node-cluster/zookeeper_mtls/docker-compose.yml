@@ -15,7 +15,9 @@ services:
       - ./portainer-data:/data
     ports:
       - 9000:9000
-
+    networks:
+      - zookeepertls
+    
   zookeeeper-1:
     image: confluentinc/cp-zookeeper:7.1.1
     hostname: zookeeeper-1
@@ -43,8 +45,9 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
-
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/ZookeeperTLS/keystores:/usr/share/keystores
+    networks:
+      - zookeepertls
 
   zookeeeper-2:
     image: confluentinc/cp-zookeeper:7.1.1
@@ -72,8 +75,9 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
-
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/ZookeeperTLS/keystores:/usr/share/keystores
+    networks:
+      - zookeepertls
 
   zookeeeper-3:
     image: confluentinc/cp-zookeeper:7.1.1
@@ -101,7 +105,9 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/ZookeeperTLS/keystores:/usr/share/keystores
+    networks:
+      - zookeepertls
  
   kafka-1:
     image: confluentinc/cp-kafka:7.1.1
