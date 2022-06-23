@@ -11,4 +11,4 @@ SERVER_TRUSTSTORE=$KEYSTORE_DIR/kafka.server.truststore.jks
 QUORUM_TRUSTSTORE=$KEYSTORE_DIR/zookeeper.quorum.truststore.jks
 
 
-DOMAIN=".zookeeper-mtls"
+DOMAIN=".zookeepertls"

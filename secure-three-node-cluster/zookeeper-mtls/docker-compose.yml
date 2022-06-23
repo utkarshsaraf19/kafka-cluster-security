@@ -45,7 +45,7 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls_certs/keystores:/usr/share/keystores
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
@@ -75,7 +75,7 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls_certs/keystores:/usr/share/keystores
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
@@ -105,7 +105,7 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls_certs/keystores:/usr/share/keystores
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
  
@@ -140,7 +140,7 @@ services:
       - zookeeper-2
       - zookeeper-3
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls_certs/keystores:/usr/share/keystores
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
@@ -175,7 +175,7 @@ services:
       - zookeeper-2
       - zookeeper-3
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls_certs/keystores:/usr/share/keystores
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
@@ -210,6 +210,6 @@ services:
       - zookeeper-2
       - zookeeper-3
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls_certs/keystores:/usr/share/keystores
+      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
