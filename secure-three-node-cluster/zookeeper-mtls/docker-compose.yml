@@ -19,7 +19,7 @@ services:
       - zookeepertls
     
   zookeeper-1:
-    image: confluentinc/cp-zookeeper:7.1.1
+    image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper-1
     container_name: zookeeper-1
     ports:
@@ -45,12 +45,12 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
+      - $PWD/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
   zookeeper-2:
-    image: confluentinc/cp-zookeeper:7.1.1
+    image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper-2
     container_name: zookeeper-2
     ports:
@@ -75,12 +75,12 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
+      - $PWD/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
   zookeeper-3:
-    image: confluentinc/cp-zookeeper:7.1.1
+    image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper-3
     container_name: zookeeper-3
     ports:
@@ -105,12 +105,12 @@ services:
       ZOOKEEPER_SSL_QUORUM_TRUSTSTORE_PASSWORD: "truststorepass"
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
+      - $PWD/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
  
   kafka-1:
-    image: confluentinc/cp-kafka:7.1.1
+    image: confluentinc/cp-kafka:latest
     hostname: kafka-1
     container_name: kafka-1
     ports:
@@ -140,12 +140,12 @@ services:
       - zookeeper-2
       - zookeeper-3
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
+      - $PWD/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
   kafka-2:
-    image: confluentinc/cp-kafka:7.1.1
+    image: confluentinc/cp-kafka:latest
     hostname: kafka-2
     container_name: kafka-2
     ports:
@@ -175,12 +175,12 @@ services:
       - zookeeper-2
       - zookeeper-3
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
+      - $PWD/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
 
   kafka-3:
-    image: confluentinc/cp-kafka:7.1.1
+    image: confluentinc/cp-kafka:latest
     hostname: kafka-3
     container_name: kafka-3
     ports:
@@ -210,6 +210,6 @@ services:
       - zookeeper-2
       - zookeeper-3
     volumes:
-      - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/tls-certs/keystores:/usr/share/keystores
+      - $PWD/tls-certs/keystores:/usr/share/keystores
     networks:
       - zookeepertls
