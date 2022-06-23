@@ -15,8 +15,6 @@ services:
       - ./portainer-data:/data
     ports:
       - 9000:9000
-    networks:
-      - zookeepertls
 
   zookeeeper-1:
     image: confluentinc/cp-zookeeper:7.1.1
@@ -46,8 +44,6 @@ services:
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
       - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
-    networks:
-      - zookeepertls
 
 
   zookeeeper-2:
@@ -77,8 +73,7 @@ services:
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
       - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
-    networks:
-      - zookeepertls
+
 
   zookeeeper-3:
     image: confluentinc/cp-zookeeper:7.1.1
@@ -107,8 +102,6 @@ services:
       ZOOKEEPER_SSL_QUORUM: "true"
     volumes:
       - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
-    networks:
-      - zookeepertls
  
   kafka-1:
     image: confluentinc/cp-kafka:7.1.1
