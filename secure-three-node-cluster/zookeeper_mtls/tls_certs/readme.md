@@ -31,17 +31,17 @@ When running, the ZooKeeper ensemble communicates exclusively over TLs using one
 
 As the encrypted communication channels are generally on the data plane, where clients cannot see them, this is challenging to demonstrate. For this demonstration, `Zookeeper-1` has an unencrypted client listener on port `12181` and the ZooKeeper Four Letter Words are enabled so use netcat to ping the ZooKeeper server:
 
-<code>ZookeeperTLS % echo ruok | nc -v localhost 12181<br/>
+<code>tls_certs % echo ruok | nc -v localhost 12181<br/>
 Connection to localhost port 12181 [tcp/*] succeeded!<br/>
 imok%<br/>
-ZookeeperTLS %
+tls_certs %
 </code>
 
 In contrast, the standard ZooKeeper port `2181` is secures with TLS. Netcat can connect to the post, but cannot communicate, so there is no response to `ruok`:
 
-<code>ZookeeperTLS % echo ruok | nc -v localhost 2181<br/>
+<code>tls_certs % echo ruok | nc -v localhost 2181<br/>
 Connection to localhost port 2181 [tcp/eforward] succeeded!<br/>
-ZookeeperTLS %
+tls_certs %
 </code>
 
 As can be seen from the `docker-compose.yml` file, the kafka servers are communcating with ZooKeeper over the encrypted ports:<br/>
