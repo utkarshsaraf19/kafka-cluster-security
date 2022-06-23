@@ -14,38 +14,38 @@ services:
     ports:
       - 9000:9000
 
-  zookeeeper-1:
+  zookeeper-1:
     image: confluentinc/cp-zookeeper:6.2.0
-    hostname: zookeeeper-1
-    container_name: zookeeeper-1
+    hostname: zookeeper-1
+    container_name: zookeeper-1
     ports:
       - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_SERVERS: zookeeeper-1:2888:3888;zookeeeper-2:2888:3888;zookeeeper-3:2888:3888
+      ZOOKEEPER_SERVERS: zookeeper-1:2888:3888;zookeeper-2:2888:3888;zookeeper-3:2888:3888
 
-  zookeeeper-2:
+  zookeeper-2:
     image: confluentinc/cp-zookeeper:6.2.0
-    hostname: zookeeeper-2
-    container_name: zookeeeper-2
+    hostname: zookeeper-2
+    container_name: zookeeper-2
     ports:
       - "2182:2182"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2182
       ZOOKEEPER_SERVER_ID: 2
-      ZOOKEEPER_SERVERS: zookeeeper-1:2888:3888;zookeeeper-2:2888:3888;zookeeeper-3:2888:3888
+      ZOOKEEPER_SERVERS: zookeeper-1:2888:3888;zookeeper-2:2888:3888;zookeeper-3:2888:3888
 
-  zookeeeper-3:
+  zookeeper-3:
     image: confluentinc/cp-zookeeper:6.2.0
-    hostname: zookeeeper-3
-    container_name: zookeeeper-3
+    hostname: zookeeper-3
+    container_name: zookeeper-3
     ports:
       - "2183:2183"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2183
       ZOOKEEPER_SERVER_ID: 3
-      ZOOKEEPER_SERVERS: zookeeeper-1:2888:3888;zookeeeper-2:2888:3888;zookeeeper-3:2888:3888
+      ZOOKEEPER_SERVERS: zookeeper-1:2888:3888;zookeeper-2:2888:3888;zookeeper-3:2888:3888
 
 
   kafka-1:
@@ -58,15 +58,15 @@ services:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka-1:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeeper-1:2181,zookeeeper-2:2182,zookeeeper-3:2183"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183"
       KAFKA_BROKER_ID: 1
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     depends_on:
-      - zookeeeper-1
-      - zookeeeper-2
-      - zookeeeper-3
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   kafka-2:
     image: confluentinc/cp-kafka:6.2.0
@@ -78,15 +78,15 @@ services:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka-2:19093,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeeper-1:2181,zookeeeper-2:2182,zookeeeper-3:2183"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183"
       KAFKA_BROKER_ID: 2
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     depends_on:
-      - zookeeeper-1
-      - zookeeeper-2
-      - zookeeeper-3
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
 
   kafka-3:
     image: confluentinc/cp-kafka:6.2.0
@@ -98,12 +98,12 @@ services:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka-3:19094,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeeper-1:2181,zookeeeper-2:2182,zookeeeper-3:2183"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183"
       KAFKA_BROKER_ID: 3
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
     depends_on:
-      - zookeeeper-1
-      - zookeeeper-2
-      - zookeeeper-3
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3

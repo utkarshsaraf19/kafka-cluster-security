@@ -18,17 +18,17 @@ services:
     networks:
       - zookeepertls
     
-  zookeeeper-1:
+  zookeeper-1:
     image: confluentinc/cp-zookeeper:7.1.1
-    hostname: zookeeeper-1
-    container_name: zookeeeper-1
+    hostname: zookeeper-1
+    container_name: zookeeper-1
     ports:
       - 2181:2181
       - 12181:12181
     environment:
       ZOOKEEPER_CLIENT_PORT: 12181
       ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_SERVERS: zookeeeper-1:2888:3888;zookeeeper-2:2888:3888;zookeeeper-3:2888:3888
+      ZOOKEEPER_SERVERS: zookeeper-1:2888:3888;zookeeper-2:2888:3888;zookeeper-3:2888:3888
       KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
       # Zookeeper mTLS Settings
       ZOOKEEPER_SERVER_CNXN_FACTORY: "org.apache.zookeeper.server.NettyServerCnxnFactory"
@@ -49,16 +49,16 @@ services:
     networks:
       - zookeepertls
 
-  zookeeeper-2:
+  zookeeper-2:
     image: confluentinc/cp-zookeeper:7.1.1
-    hostname: zookeeeper-2
-    container_name: zookeeeper-2
+    hostname: zookeeper-2
+    container_name: zookeeper-2
     ports:
       - "2182:2182"
     environment:
       ZOOKEEPER_CLIENT_PORT: 12182
       ZOOKEEPER_SERVER_ID: 2
-      ZOOKEEPER_SERVERS: zookeeeper-1:2888:3888;zookeeeper-2:2888:3888;zookeeeper-3:2888:3888
+      ZOOKEEPER_SERVERS: zookeeper-1:2888:3888;zookeeper-2:2888:3888;zookeeper-3:2888:3888
       KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
       # Zookeeper mTLS Settings
       ZOOKEEPER_SERVER_CNXN_FACTORY: "org.apache.zookeeper.server.NettyServerCnxnFactory"
@@ -79,16 +79,16 @@ services:
     networks:
       - zookeepertls
 
-  zookeeeper-3:
+  zookeeper-3:
     image: confluentinc/cp-zookeeper:7.1.1
-    hostname: zookeeeper-3
-    container_name: zookeeeper-3
+    hostname: zookeeper-3
+    container_name: zookeeper-3
     ports:
       - "2183:2183"
     environment:
       ZOOKEEPER_CLIENT_PORT: 12183
       ZOOKEEPER_SERVER_ID: 3
-      ZOOKEEPER_SERVERS: zookeeeper-1:2888:3888;zookeeeper-2:2888:3888;zookeeeper-3:2888:3888
+      ZOOKEEPER_SERVERS: zookeeper-1:2888:3888;zookeeper-2:2888:3888;zookeeper-3:2888:3888
       KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
       # Zookeeper mTLS Settings
       ZOOKEEPER_SERVER_CNXN_FACTORY: "org.apache.zookeeper.server.NettyServerCnxnFactory"
@@ -119,7 +119,7 @@ services:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka-1:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeeper-1:2181,zookeeeper-2:2182,zookeeeper-3:2183"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183"
       KAFKA_BROKER_ID: 1
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
@@ -136,9 +136,9 @@ services:
       KAFKA_ZOOKEEPER_SET_ACL: "false"  
       #KAFKA_OPTS: "-Dzookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty"
     depends_on:
-      - zookeeeper-1
-      - zookeeeper-2
-      - zookeeeper-3
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
     volumes:
       - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
     networks:
@@ -154,7 +154,7 @@ services:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka-2:19093,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeeper-1:2181,zookeeeper-2:2182,zookeeeper-3:2183"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183"
       KAFKA_BROKER_ID: 2
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
@@ -171,9 +171,9 @@ services:
       KAFKA_ZOOKEEPER_SET_ACL: "false"
       #KAFKA_OPTS: "-Dzookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty"
     depends_on:
-      - zookeeeper-1
-      - zookeeeper-2
-      - zookeeeper-3
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
     volumes:
       - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
     networks:
@@ -189,7 +189,7 @@ services:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka-3:19094,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeeper-1:2181,zookeeeper-2:2182,zookeeeper-3:2183"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183"
       KAFKA_BROKER_ID: 3
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
@@ -206,9 +206,9 @@ services:
       KAFKA_ZOOKEEPER_SET_ACL: "false"
       #KAFKA_OPTS: "-Dzookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty"
     depends_on:
-      - zookeeeper-1
-      - zookeeeper-2
-      - zookeeeper-3
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
     volumes:
       - /home/guru/Documents/Coding/kafka-cluster-security/secure-three-node-cluster/zookeeper_mtls/certs/keystores:/usr/share/keystores
     networks:
