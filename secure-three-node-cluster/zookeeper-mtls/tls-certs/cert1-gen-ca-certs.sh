@@ -16,6 +16,7 @@ echo "  >>>  Generate CA cert and key"
 openssl req -new -x509 \
     -keyout $CA_KEY \
     -out $CA_CRT \
+    -legacy \
     -days 365 \
     -subj '/CN=example.confluent.io/OU=example/O=CONFLUENT/L=MountainView/S=Ca/C=US' \
     -passin pass:capassword \
