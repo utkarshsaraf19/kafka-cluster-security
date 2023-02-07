@@ -52,6 +52,7 @@ do
        echo "  >>>  Get quorum host key from quorum Keystore"
        openssl pkcs12 \
            -in $KEYSTORE_FILENAME \
+           -legacy \
            -passin pass:keystorepass \
            -passout pass:keypass \
            -nodes -nocerts \
@@ -72,6 +73,7 @@ do
         -CA $CA_CRT \
         -CAkey $CA_KEY \
         -in $CSR_FILENAME \
+        -legacy \
         -out $CRT_SIGNED_FILENAME \
         -days 9999 \
         -sha256 \
