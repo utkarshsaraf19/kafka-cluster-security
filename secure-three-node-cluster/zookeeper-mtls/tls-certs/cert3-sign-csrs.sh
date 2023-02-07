@@ -45,6 +45,7 @@ for line in `sed '/^$/d' $filename`; do
           -CA $CA_CRT \
           -CAkey $CA_KEY \
           -in $CSR_FILENAME \
+          -legacy \
           -out $CRT_SIGNED_FILENAME \
           -days 9999 \
           -sha256 \
