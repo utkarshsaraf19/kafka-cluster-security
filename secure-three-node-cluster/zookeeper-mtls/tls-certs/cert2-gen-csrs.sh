@@ -48,6 +48,7 @@ for line in `sed '/^$/d' $filename`; do
          echo "  >>>  Get host key from Keystore"
          openssl pkcs12 \
              -in $KEYSTORE_FILENAME \
+             -legacy \
              -passin pass:keystorepass \
              -passout pass:keypass \
              -nodes -nocerts \
